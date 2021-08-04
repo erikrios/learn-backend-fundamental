@@ -80,7 +80,7 @@ class NotesHandler {
 
       return {
         status: 'success',
-        message: 'Catatan berhasil diperbaharui',
+        message: 'Catatan berhasil diperbarui',
       };
     } catch (error) {
       const response = h.response({
