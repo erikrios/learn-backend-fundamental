@@ -1,6 +1,7 @@
 const { Pool } = require('pg');
 const { nanoid } = require('nanoid');
 const InvariantError = require('../../exceptions/InvariantError');
+const { mapDBToModel } = require('../../utils');
 
 class NotesService {
   constructor() {
@@ -28,5 +29,10 @@ class NotesService {
     }
 
     return result.rows[0].id;
+  }
+
+  async getNotes() {
+    const result = await this._pool.query('SELECT * FROM notes');
+    return result.rows.map(mapDBToModel);
   }
 }
