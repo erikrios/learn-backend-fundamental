@@ -50,4 +50,24 @@ class NotesService {
 
     return result.rows.map(mapDBToModel)[0];
   }
+
+  async editNoteById(id, {
+    title,
+    body,
+    tags,
+  }) {
+    const updatedAt = new Date().toISOString();
+    const query = {
+      text: 'UPDATE notes SET title = $1, body = $2, tags = $3, updated_at = $4 WHERE id = $5 RETURNING id',
+      values: [title, body, tags, updatedAt, id],
+    };
+
+    const result = await this._pool.query(query);
+
+    if (!result.rows.length) {
+      throw new NotFoundError('Gagal memperbarui catatan. Id tidak ditemukan');
+    }
+  }
 }
+
+module.exports = NotesService;
