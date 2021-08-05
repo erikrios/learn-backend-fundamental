@@ -1,6 +1,7 @@
 const { Pool } = require('pg');
 const { nanoid } = require('nanoid');
 const InvariantError = require('../../exceptions/InvariantError');
+const NotFoundError = require('../../exceptions/NotFoundError');
 const { mapDBToModel } = require('../../utils');
 
 class NotesService {
@@ -34,5 +35,19 @@ class NotesService {
   async getNotes() {
     const result = await this._pool.query('SELECT * FROM notes');
     return result.rows.map(mapDBToModel);
+  }
+
+  async getNoteById(id) {
+    const query = {
+      text: 'SELECT * FROM notes WHERE id = $1',
+      values: [id],
+    };
+    const result = await this._pool.query(query);
+
+    if (!result.rows.length) {
+      throw new NotFoundError('Catatan tidak ditemukan');
+    }
+
+    return result.rows.map(mapDBToModel)[0];
   }
 }
