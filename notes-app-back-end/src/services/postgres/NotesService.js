@@ -68,6 +68,19 @@ class NotesService {
       throw new NotFoundError('Gagal memperbarui catatan. Id tidak ditemukan');
     }
   }
+
+  async deleteNoteById(id) {
+    const query = {
+      text: 'DELETE FROM notes WHERE id = $1 RETURNING id',
+      values: [id],
+    };
+
+    const result = await this._pool.query(query);
+
+    if (!result.rows.length) {
+      throw new NotFoundError('Catatan gagal dihapus. Id tidak ditemukan');
+    }
+  }
 }
 
 module.exports = NotesService;
