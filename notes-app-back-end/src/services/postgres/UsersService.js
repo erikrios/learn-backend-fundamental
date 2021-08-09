@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const InvariantError = require('../../exceptions/InvariantError');
 const NotFoundError = require('../../exceptions/NotFoundError');
 
-class UserService {
+class UsersService {
   constructor() {
     this._pool = new Pool();
   }
@@ -60,4 +60,4 @@ class UserService {
     return result.rows[0];
   }
 }
-module.exports = UserService;
+module.exports = UsersService;
