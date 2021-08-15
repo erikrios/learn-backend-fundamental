@@ -37,7 +37,7 @@ class UserHandler {
       }
 
       const response = h.response({
-        stsatus: 'error',
+        status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
       });
       response.code(500);
