@@ -1,0 +1,26 @@
+{
+  "name": "learn-backend-fundamental",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikrios/learn-backend-fundamental.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erikrios/learn-backend-fundamental/issues"
+  },
+  "homepage": "https://github.com/erikrios/learn-backend-fundamental#readme",
+  "dependencies": {
+    "amqplib": "^0.8.0",
+    "dotenv": "^10.0.0",
+    "nodemailer": "^6.6.3",
+    "pg": "^8.7.1"
+  }
+}
