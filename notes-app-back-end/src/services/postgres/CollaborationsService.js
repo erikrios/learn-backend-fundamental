@@ -37,6 +37,8 @@ class CollaborationsService {
     if (!result.rows.length) {
       throw new InvariantError('Kolaborasi gagal dihapus');
     }
+
+    await this._cacheService.delete(`notes:${userId}`);
   }
 
   async verifyCollaborator(noteId, userId) {
@@ -50,8 +52,6 @@ class CollaborationsService {
     if (!result.rows.length) {
       throw new InvariantError('Kolaborasi gagal diverifikasi');
     }
-
-    await this._cacheService.delete(`notes:${userId}`);
   }
 }
 
